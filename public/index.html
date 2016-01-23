@@ -29,22 +29,18 @@
 			}
 			$scope.genders = ['Male', 'Female']
 			$scope.percentages = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
-			$scope.genderStats = [{
-				percentage: 0
-			}]
+			$scope.genderStats = []
 			$scope.viewName = './mainPage.html'
 			$scope.removeGender = function(index) {
 				$scope.genderStats.splice(index, 1)
 			}
 			$scope.addGender = function(data) {
 				if (data.gender != 'Chose a gender' && data.percentage != 'Chose a percentage') {
-					$scope.genderStats[$scope.genderStats.length - 1] = {
+					
+					$scope.genderStats.push( {
 						gender: data.gender,
 						percentage: data.percentage,
 						isData: true
-					}
-					$scope.genderStats.push({
-						percentage: 0
 					})
 					resetChosen()
 				}
