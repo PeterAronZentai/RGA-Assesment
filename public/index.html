@@ -54,12 +54,9 @@
 							$scope.pharmacyIndex = 0
 						}, function(err) {
 							throw new Error('GET failed:', err)
-							console.log('trying cors...')
-							callOtherDomain('https://data.gov.uk/data/api/service/health/pharmacies/partial_postcode?partial_postcode=TW8', function(res) {
-								$scope.pharmacies = res.data.result
-								$scope.pharmacyIndex = 0
-								$scope.$apply()
-							})
+							
+                            //try jsonp here
+                            
 						})
 						break;
 					case 'demo2.html':
