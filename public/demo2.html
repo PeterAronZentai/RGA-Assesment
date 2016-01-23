@@ -16,10 +16,24 @@
 					</thead>
 					<tbody>
 					<tr ng-repeat="x in genderStats track by $index">
-						{{x}}
-						<td style="text-align:left">{{x.gender}}</td>
-						<td style="text-align:left">{{x.percentage}}%</td>
-						<td style="text-align:left"><button type="button" class="btn btn-default" style='background:grey;color:white' ng-click="removeGender($index)">REMOVE</button></td>
+						
+						<td ng-if="x.isData" style="text-align:left">{{x.gender}}</td>
+						<td ng-if="x.isData" style="text-align:left">{{x.percentage}}%</td>
+						<td ng-if="x.isData" style="text-align:left"><button type="button" class="btn btn-default" style='background:grey;color:white' ng-click="removeGender($index)">REMOVE</button></td>
+						
+						<td ng-if="!x.isData" style="text-align:left">
+							<select style="width:100%" ng-model='chosenGender'>
+								<option disabled selected>Chose a gender</option>
+								<option ng-repeat="x in genders" value="{{x}}">{{x}}</option>
+							</select>
+						</td>
+						<td ng-if="!x.isData" style="text-align:left">
+							<select style="width:100%" ng-model='chosenPercentage'>
+								<option disabled selected>Chose a percentage</option>
+								<option ng-repeat="x in percentages" value="{{x}}">{{x}}%</option>
+							</select>
+						</td>
+						<td ng-if="!x.isData" style="text-align:left"><button type="button" class="btn btn-default" style='background:green;color:white' ng-click="removeGender($index)">ADD</button></td>
 						
 					</tr>
 					
@@ -34,9 +48,19 @@
 				
 				
 			</div>
-			<div class="row">
+			<!--<div class="row">
+				<span>
+					<select style="width:100%" ng-model='chosenGender'>
+						<option ng-repeat="x in genders" value="{{x}}">{{x}}</option>
+					</select>
+				</span>
+				<span>
+					<select style="width:100%" ng-model='chosenPercentage'>
+						<option ng-repeat="x in percentages" value="{{x}}">{{x}}</option>
+					</select>
+				</span>
 				
-			</div>
+			</div>-->
 			<div class="row">
 				
 			</div>
