@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+	<title>RGA Assessment Demo</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="styles.css">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script src="crossDomainReq.js"></script>
+
+	<script>
+    
+		var appModule = angular.module("appModule", []);
+		appModule.controller("ApplicationController", ApplicationController);
+
+		function ApplicationController($scope, $http) {
+			
+      $scope.viewName = './mainPage.html'
+			
+      $scope.showView = function(viewName) {
+        
+				$scope.viewName = viewName
+				
+        switch (viewName) {
+					
+          case 'demo1.html':
+						$http.get('https://data.gov.uk/data/api/service/health/pharmacies/partial_postcode?partial_postcode=TW8').then(function(res) {
+							$scope.pharmacies = res.data.result
+              $scope.pharmacyIndex=0
+						}, function(err) {
+							throw new Error('GET failed:', err)
+							console.log('trying cors...')
+							callOtherDomain('https://data.gov.uk/data/api/service/health/pharmacies/partial_postcode?partial_postcode=TW8', function(res) {
+								$scope.pharmacies = res.data.result
+                $scope.pharmacyIndex=0
+								$scope.$apply()
+							})
+						})
+						break;
+            
+				}
+			}
+      
+		}
+  
+  </script>
+
+</head>
+
+<body ng-app="appModule" ng-controller="ApplicationController" ng-include="viewName"></body>
+
+</html>
