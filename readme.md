@@ -23,7 +23,7 @@
 ##Installation of web-server:
 
 1. Download and install node.js [https://nodejs.org/en/download/](https://nodejs.org/en/download/)
-2. Extract the contents of server.zip into a folder **OR** clone the project from GitHub `>git clone https://github.com/mikilukasik/RGA-Assesment.git`
+2. Extract the contents of RGA-Assesment.zip into a folder **OR** clone the project from GitHub `>git clone https://github.com/mikilukasik/RGA-Assesment.git`
 3. Install dependencies: from the root folder of the project type `>npm install`
 4. Start the server: type `>node server.js`
 
